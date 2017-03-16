@@ -309,10 +309,10 @@ each task run.
 Disclaimer by Aurélien Géron
 ============================
 
-I am not the original author of this project. I contacted Paolo Ferragina, who kindly provided me with this code and authorized me to publish it on GitHub. I made a few minor modifications before the first commit:
+I am not the original author of this project. I contacted Paolo Ferragina, who provided me with this code under the Apache 2.0 License, and kindly authorized me to publish it on GitHub. I made a few minor modifications before the first commit:
 
-* Renamed `LICENSE.txt` to `LICENSE`, and `README.txt` to `README.md`, and updated `build.xml`.
+* Renamed `LICENSE.txt` to `LICENSE`, and `README.txt` to `README.md`, and updated `build.xml` accordingly.
 * Made purely cosmetic changes to this `README.md` file and added this final section.
-* Added the .gitignore file.
+* Added the `.gitignore` file.
 
 Feel free to clone & submit pull requests.
