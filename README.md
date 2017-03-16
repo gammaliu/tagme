@@ -255,17 +255,15 @@ DBpedia:
     $ ant get-source -Dlang=... -Ddd=... -Ddbpedia=... -Dtargetdir=...
 
 where:
-  `lang` can be `it` (Italian) or `en` (English)
 
-  `dd` is the version of the Wikipedia dump in the format YYYYMMDD (the date of
+* `lang` can be `it` (Italian) or `en` (English)
+* `dd` is the version of the Wikipedia dump in the format YYYYMMDD (the date of
   the snapshot). See http://dumps.wikimedia.org/backup-index.html for further
   details.
-
-  `dbpedia` is the version of DBpedia, in the format X.Y. See
+* `dbpedia` is the version of DBpedia, in the format `X.Y`. See
   http://downloads.dbpedia.org/ for additional details.
-
-  `targetdir` is the directory where files will be stored, ie <repository
-  root>/it/source for Italian or <repository root>/en/source for English.
+* `targetdir` is the directory where files will be stored, ie `<repository
+  root>/it/source` for Italian or `<repository root>/en/source` for English.
   
 This task downloads and extracts Wikipedia and DBpedia data. Note that for
 English Wikipedia, this requires about 90G of disk space. Additionally, 
@@ -279,16 +277,13 @@ Wikipedia/DBpedia data.
 
 where:
 
-  `lang` can be `it` (Italian) or `en` (English)
-
-  `config.file` is the absolute path to the TAGME config file, where the
+* `lang` can be `it` (Italian) or `en` (English)
+* `config.file` is the absolute path to the TAGME config file, where the
   repository path, log4j configuration file path and other parameters are
   specified
-
-  `mem` is the amount of JVM heap space to allocate for the process (basically
+* `mem` is the amount of JVM heap space to allocate for the process (basically
   you need for the same amount of memory that is required to run TAGME)
-
-  `mailto` (optional) the email address where a notification of the end of the
+* `mailto` (optional) the email address where a notification of the end of the
   process will be sent. An SMTP server must be installed in the machine. 
 
 This task creates all data structures, also the ones used in fast mode, so the
