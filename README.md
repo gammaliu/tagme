@@ -26,7 +26,8 @@ all dependency libraries (see below).
 AUTHORS' NOTE
 =============
 
-Even if the live demo of TAGME that is available at http://tagme.di.unipi.it
+Even if the live demo of TAGME that is available at
+https://services.d4science.org/web/tagme/documentation
 has been queried more than 100 millions of times and has been able to handle
 thousands of queries per minute without any issue (hence proving a certain
 stability), this code has still to be considered an academic prototype: it is 
@@ -41,8 +42,8 @@ If you are using this software for your researches and you are going to publish
 results based on TAGME annotation process, please add this citation to your 
 paper:
 
-  Paolo Ferragina, Ugo Scaiella: Fast and Accurate Annotation of Short Texts 
-  with Wikipedia Pages. IEEE Software 29(1): 70-75 (2012)
+> Paolo Ferragina, Ugo Scaiella: Fast and Accurate Annotation of Short Texts 
+> with Wikipedia Pages. IEEE Software 29(1): 70-75 (2012)
 
 REQUIREMENTS
 ============
@@ -68,9 +69,9 @@ The following is the directory structure required to build the code:
 `./src/` directory contains TAGME's source files, provided within this package.
 
 The following artifacts are required to build and run TAGME. Standard Maven
-notation has been used to identify them: <groupId>:<artifactId>:<version>. You
-can download those libraries from http://search.maven.org, or use the following
-ant task
+notation has been used to identify them: `<groupId>:<artifactId>:<version>`.
+You can download those libraries from http://search.maven.org, or use the
+following ant task
 
     $ ant get-deps
 
@@ -148,10 +149,10 @@ XPath-like notation):
 Using the above settings, you need for approximatively 16G of RAM to use English
 Wikipedia and 6G of RAM to use Italian. The JVM Heap Space has to be set
 accordingly, using JVM properties. Eg, to use both Italian and English (about
-24G ) you must include this to java command line: -Xmx24G. Alternatively, you can
-reduce the memory consumption, removing those two settings. In this case, 2G of
-RAM are enough to run both Italian and English. Obviously, annotation process
-will be less faster.
+24G ) you must include this to java command line: `-Xmx24G`. Alternatively, you
+can reduce the memory consumption, removing those two settings. In this case,
+2G of RAM are enough to run both Italian and English. Obviously, annotation
+process will be less faster.
 
 RUNNING
 =======
@@ -216,7 +217,7 @@ TAGME'S REPOSITORY
 TAGME requires several pre-processed data structures for annotating. Those
 datasets are build from Wikipedia source files (see below) and are stored within
 a directory that is called TAGME repository. The absolute path of this
-directory has to be specified in the TAMGE's configuration file. See the
+directory has to be specified in the TAGME's configuration file. See the
 configuration sample for further details.
 
 STOPWORD REPOSITORY
@@ -268,7 +269,7 @@ where:
 This task downloads and extracts Wikipedia and DBpedia data. Note that for
 English Wikipedia, this requires about 90G of disk space. Additionally, 
 the process generates several datasets and to complete the indexing you should
-need for about 180GB.
+need for about 180 GB.
 
 When all data has been downloaded, another Ant task can be executed to index
 Wikipedia/DBpedia data.
@@ -288,7 +289,7 @@ where:
 
 This task creates all data structures, also the ones used in fast mode, so the
 task itself requires a lot of memory (see above). If you need to generate data
-just to run in 'light mode', you can execute this Ant task 
+just to run in 'light mode', you can execute this Ant task:
 
     $ ant index.light -Dconfig.file=... -Dmem=... -Dmailto=... -Dlang=
 
