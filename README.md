@@ -305,3 +305,14 @@ output of the process is redirect to the standard output, that Ant redirects
 to a file that will be create for each task run. You can find this file in 
 `./logs/` directory. Ant task takes care to generate a unique a file name for
 each task run.
+
+Disclaimer by Aurélien Géron
+============================
+
+I am not the original author of this project. I contacted Paolo Ferragina, who kindly provided me with this code and authorized me to publish it on GitHub. I made a few minor modifications before the first commit:
+
+* Renamed `LICENSE.txt` to `LICENSE`, and `README.txt` to `README.md`, and updated `build.xml`.
+* Made purely cosmetic changes to this `README.md` file and added this final section.
+* Added the .gitignore file.
+
+Feel free to clone & submit pull requests.
