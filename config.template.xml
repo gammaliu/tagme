@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	***************************************** 
+	*			T A G M E V2
+	*		configuration template
+	***************************************** 
+-->
+
+
+<tagme>
+	<logConfiguration>PATH_TO_LOG4J_XML_CONFIG_FILE</logConfiguration>
+	<stopword>PATH_TO_STOPWORD_DIRECTORY</stopword>
+	<repository>PATH_TO_WIKI_REPOSITORY</repository>
+
+	<langs>
+		<lang>LANG_CODE</lang>
+	</langs>
+
+
+	<setting name="parsing">
+		<param name="useIgnoreAnchor" value="BOOLEAN_VALUE" />
+		<param name="removeAnchorStopword" value="BOOLEAN_VALUE" />
+		<param name="window" value="INT_VALUE" />
+		<param name="data" value="[TagmeParser.DataType]" />
+	</setting>
+
+	<setting name="annotation">
+		<param name="substringPruning" value="BOOLEAN_VALUE" />
+		<param name="lpFactor" value="FLOAT_VALUE" />
+		<param name="longTextMode" value="BY_ANCHOR" />
+		<param name="longTextLimit" value="INT_VALUE" />
+		<param name="rho" value="FLOAT_VALUE" />
+		<param name="relatedness" value="[RelatednessMeasure.RelType]" />
+	</setting>
+
+	<setting name="disambiguator">
+		<param name="robustnessLimit" value="FLOAT_VALUE" />
+		<param name="epsilon" value="FLOAT_VALUE" />
+		<param name="minCommonness" value="FLOAT_VALUE" />
+		<param name="minLinks" value="INT_VALUE" />
+		<param name="quadraticMean" value="BOOLEAN_VALUE" />
+		<param name="robustnessTest" value="BOOLEAN_VALUE" />
+		<param name="selectByNVotes" value="BOOLEAN_VALUE" />
+		<param name="checkPeopleNames" value="BOOLEAN_VALUE" />
+	</setting>
+</tagme>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TAGME" basedir=".">
+
+	<import file="wikidumps.xml"/>
+	
+	<property file="${basedir}/build.properties" />
+
+	
+	<property name="bin" value="${basedir}/bin"/>
+	<property name="src" value="${basedir}/src"/>
+	<property name="lib" value="${basedir}/lib"/>
+	<property name="extlib" value="${basedir}/ext_lib"/>
+	<property name="preproc_lib" value="${basedir}/preproc_lib"/>
+	<property name="dist.dir" value="${basedir}/dist"/>
+	
+	<!-- they will get populated from build.properties
+	
+	-->
+	<property name="all.indexes" value="WikipediaIndexer+AnchorIndexer+WikipediaGraph+WikipediaInGraph+InGraphArray+TopicIndexer+TopicDocs+AnchorTernaryTrieDump+RelatednessMatrix+PeopleWIDs"/>
+	<property name="light.indexes" value="WikipediaIndexer+AnchorIndexer+WikipediaGraph+WikipediaInGraph+InGraphArray+TopicIndexer+TopicDocs+TopicDocs+PeopleWIDs"/>
+	
+	<path id="tagme.lib">
+		<fileset dir="${lib}">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${extlib}">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${preproc_lib}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<path id="tagme.cp">
+		<fileset dir="${lib}">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${extlib}">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${preproc_lib}">
+			<include name="*.jar"/>
+		</fileset>
+		<pathelement path="${bin}"/>
+	</path>
+
+	<target name="clean">
+		<mkdir dir="${bin}"/>
+		<delete includeemptydirs="true">
+			<fileset dir="${bin}" includes="**/*"/>
+		</delete>
+	</target>
+
+	<target name="get-deps">
+		<get dest="${basedir}/lib/jsap-2.1.jar" src="http://search.maven.org/remotecontent?filepath=com/martiansoftware/jsap/2.1/jsap-2.1.jar" />
+		<get dest="${basedir}/lib/commons-beanutils-1.8.3.jar" src="http://search.maven.org/remotecontent?filepath=commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar" />
+		<get dest="${basedir}/lib/commons-codec-1.5.jar" src="http://search.maven.org/remotecontent?filepath=commons-codec/commons-codec/1.5/commons-codec-1.5.jar" />
+		<get dest="${basedir}/lib/commons-collections-3.2.1.jar" src="http://search.maven.org/remotecontent?filepath=commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar" />
+		<get dest="${basedir}/lib/commons-configuration-1.7.jar" src="http://search.maven.org/remotecontent?filepath=commons-configuration/commons-configuration/1.7/commons-configuration-1.7.jar" />
+		<get dest="${basedir}/lib/commons-io-2.0.1.jar" src="http://search.maven.org/remotecontent?filepath=commons-io/commons-io/2.0.1/commons-io-2.0.1.jar" />
+		<get dest="${basedir}/lib/commons-lang-2.6.jar" src="http://search.maven.org/remotecontent?filepath=commons-lang/commons-lang/2.6/commons-lang-2.6.jar" />
+		<get dest="${basedir}/lib/commons-logging-1.1.1.jar" src="http://search.maven.org/remotecontent?filepath=commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" />
+		<get dest="${basedir}/lib/dsiutils-2.0.4.jar" src="http://search.maven.org/remotecontent?filepath=it/unimi/dsi/dsiutils/2.0.4/dsiutils-2.0.4.jar" />
+		<get dest="${basedir}/lib/fastutil-6.4.1.jar" src="http://search.maven.org/remotecontent?filepath=it/unimi/dsi/fastutil/6.4.1/fastutil-6.4.1.jar" />
+		<get dest="${basedir}/lib/sux4j-3.0.2.jar" src="http://search.maven.org/remotecontent?filepath=it/unimi/dsi/sux4j/3.0.2/sux4j-3.0.2.jar" />
+		<get dest="${basedir}/lib/webgraph-3.0.4.jar" src="http://search.maven.org/remotecontent?filepath=it/unimi/dsi/webgraph/3.0.4/webgraph-3.0.4.jar" />
+		<get dest="${basedir}/lib/commons-digester3-3.0.jar" src="http://search.maven.org/remotecontent?filepath=org/apache/commons/commons-digester3/3.0/commons-digester3-3.0.jar" />
+		<get dest="${basedir}/lib/lucene-core-3.4.0.jar" src="http://search.maven.org/remotecontent?filepath=org/apache/lucene/lucene-core/3.4.0/lucene-core-3.4.0.jar" />
+		<get dest="${basedir}/lib/json-20131018.jar" src="http://search.maven.org/remotecontent?filepath=org/json/json/20131018/json-20131018.jar" />
+		<get dest="${basedir}/lib/log4j-1.2.16.jar" src="http://search.maven.org/remotecontent?filepath=log4j/log4j/1.2.16/log4j-1.2.16.jar" />
+		<mkdir dir="${extlib}"/>
+		<get dest="${extlib}/catalina-6.0.37.jar" src="http://search.maven.org/remotecontent?filepath=org/apache/tomcat/catalina/6.0.37/catalina-6.0.37.jar" />
+		<get dest="${extlib}/servlet-api-2.4.jar" src="http://search.maven.org/remotecontent?filepath=javax/servlet/servlet-api/2.4/servlet-api-2.4.jar" />
+		<mkdir dir="${preproc_lib}"/>
+		<get dest="${preproc_lib}/mailapi-1.4.3.jar" src="http://search.maven.org/remotecontent?filepath=javax/mail/mailapi/1.4.3/mailapi-1.4.3.jar" />
+		<get dest="${preproc_lib}/smtp-1.4.4.jar" src="http://search.maven.org/remotecontent?filepath=com/sun/mail/smtp/1.4.4/smtp-1.4.4.jar" />
+	</target>
+	
+	<target name="compile" depends="clean">
+		<mkdir dir="${bin}"/>
+		<javac
+			destdir="${bin}"
+			classpathref="tagme.lib"
+			nowarn="on"
+			debug="on"
+			debuglevel="lines,vars,source"
+			encoding="UTF-8"
+		>
+			<src path="${src}"/>
+			<compilerarg value="-Xlint:none"/>
+		</javac>
+	</target>
+	
+	<target name="run" depends="compile">
+		<fail unless="class" message="No [class] param specified: use -Dclass=" />
+		<java 
+			fork="true"
+			classpathref="tagme.cp"
+			classname="it.acubelab.tagme.${class}">
+			<jvmarg value="-Xmx${mem}" />
+			<jvmarg value="-Xms${mem}" />
+			<jvmarg value="-Dtagme.config=${config.file}" />
+		</java>
+
+	</target>
+
+	<target name="index" depends="compile">
+		<fail unless="lang" message="No [lang] param specified: use -Dlang=" />
+		<fail unless="type" message="No [type] param specified: use -Dtype=(values, separated by a +)" />
+		
+		<tstamp>
+		    <format property="logdate" pattern="yyMMdd-HH.mm" locale="IT"/>
+		</tstamp>
+		<mkdir dir="${basedir}/logs" />
+		<java 
+			fork="true"
+			classpathref="tagme.cp"
+			classname="it.acubelab.tagme.preprocessing.Indexer"
+			output="${basedir}/logs/index_${logdate}_${lang}_${type}"
+			>
+			<jvmarg value="-Xmx${mem}" />
+			<jvmarg value="-Xms${mem}" />
+			<jvmarg value="-Dtagme.config=${config.file}" />
+			<arg value="${type}"/>
+			<arg value="${lang}"/>
+			<arg value="${mailto}"/>
+		</java>
+
+	</target>
+	<target name="index.all">
+		<property name="lang" value="all"/>
+		<property name="type" value="${all.indexes}"/>
+		<antcall target="index">
+		</antcall>
+	</target>
+	<target name="index.light">
+		<property name="lang" value="all"/>
+		<property name="type" value="${light.indexes}"/>
+		<antcall target="index">
+		</antcall>
+	</target>
+
+	
+	
+	<target name="jar" depends="compile">
+		<tstamp/>
+		<delete quiet="true" file="${basedir}/tagme.jar" />
+		<jar destfile="${basedir}/tagme.jar" basedir="${bin}">
+		    <manifest>
+		      	<attribute name="Built-By" value="${user.name}"/>
+		    	<attribute name="Date" value="${DSTAMP}-${TSTAMP}"/>
+		    	<attribute name="Machine" value="${os.name} ${os.arch}"/>
+		    </manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.source" depends="compile">
+		<delete dir="${basedir}/tmp" quiet="true" />
+		<mkdir dir="${basedir}/tmp"/>
+		<copy todir="${basedir}/tmp" preservelastmodified="true">
+			<fileset dir="${src}" />
+			<fileset dir="${bin}" />
+		</copy>
+		<tstamp>
+		    <format property="time_prefix" pattern="yyyy-MM-dd HH:mm"/>
+		</tstamp>
+		
+		<jar destfile="${basedir}/tagme.jar" basedir="${basedir}/tmp">
+		    <manifest>
+		      	<attribute name="Built-By" value="${user.name}"/>
+		    	<attribute name="Date" value="${time_prefix}"/>
+		    	<attribute name="Machine" value="${os.name} ${os.arch}"/>
+		    </manifest>
+		</jar>
+		<delete dir="${basedir}/tmp" quiet="true" />
+	</target>
+	
+	<target name="deploy" depends="jar.source">
+		<fail unless="local.deployment"/>
+		<delete>
+			<fileset dir="${local.deployment}" includes="tagme.*.jar"/>
+		</delete>
+		<tstamp>
+		    <format property="time.suffix" pattern="yyMMddHHmm"/>
+		</tstamp>
+		<copy todir="${local.deployment}">
+			<fileset dir="${lib}" includes="*.jar" />
+		</copy>
+		<copy file="${basedir}/tagme.jar" tofile="${local.deployment}/tagme.${time.suffix}.jar" />
+	</target>
+
+	<target name="pack" >
+		<delete file="tagme.acubelab.tar.gz" quiet="true" />
+		<tar destfile="tagme.acubelab.tar.gz" compression="gzip">
+			<tarfileset dir="src" prefix="src/">
+				<include name="**/*.java"/>
+			</tarfileset>
+			<tarfileset dir="stopwords" prefix="stopwords/">
+				<include name="*.stopword"/>
+			</tarfileset>
+			<tarfileset dir="lib" prefix="lib/">
+				<include name="snowball.jar"/>
+			</tarfileset>
+			<tarfileset dir="samples" prefix="samples/">
+				<include name="*.java"/>
+			</tarfileset>
+			<tarfileset dir=".">
+				<include name="build.xml"/>
+				<include name="log4j.xml"/>
+				<include name="wikidumps.xml"/>
+				<include name="config.sample.xml"/>
+				<include name="config.template.xml"/>
+				<include name="LICENSE"/>
+				<include name="README.md"/>
+				<include name="wikipatterns.properties"/>
+			</tarfileset>
+		</tar>
+	</target>
+	
+</project>
+

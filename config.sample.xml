@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	***************************************** 
+	*			T A G M E V2
+	*		sample configuration
+	***************************************** 
+-->
+<tagme>
+	<logConfiguration>...</logConfiguration>
+	<stopword>...</stopword>
+	<repository>...</repository>
+
+	<langs>
+		<lang>it</lang>
+		<lang>en</lang>
+	</langs>
+
+
+	<setting name="parsing">
+		<param name="useIgnoreAnchor" value="true" />
+		<param name="removeAnchorStopword" value="true" />
+		<param name="instantPruning" value="true" />
+		<param name="window" value="8" />
+		<param name="data" value="TERNARY_TRIE" />
+		-->
+	</setting>
+
+	<setting name="annotation">
+		<param name="substringPruning" value="true" />
+		<param name="longTextMode" value="BY_ANCHOR" />
+		<param name="longTextLimit" value="30" />
+		<param name="rho" value="0.1f" />
+		<param name="relatedness" value="MATRIX" />
+	</setting>
+
+	<setting name="disambiguator">
+		<param name="robustnessLimit" value="0.95f" />
+		<param name="epsilon" value="0.2f" />
+		<param name="minCommonness" value="0.005f" />
+		<param name="minLinks" value="2" />
+		<param name="quadraticMean" value="false" />
+		<param name="robustnessTest" value="false" />
+		<param name="selectByNVotes" value="false" />
+		<param name="checkPeopleNames" value="true" />
+	</setting>
+</tagme>

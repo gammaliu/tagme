@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="WikiFiles" basedir="." >
+
+	<!--
+		PROPS TO BE SPECIFIED WHEN CALLING TARGET
+		lang
+		dd
+		targetdir
+		dbpedia
+	-->
+	
+	<property name="prefix" value="${lang}wiki-${dd}-" />
+	<property name="pre-target" value="${lang}wiki-latest-" />
+	<property name="baseurl" value="http://dumps.wikimedia.org/${lang}wiki/${dd}/" />
+	
+	<property name="md5" value="md5sums.txt" />
+	<property name="ns0-titles" value="all-titles-in-ns0.gz" />
+	<property name="abstract" value="abstract.xml" />
+	<property name="page" value="page.sql.gz" />
+	<property name="redirect" value="redirect.sql.gz" />
+	<property name="pagelinks" value="pagelinks.sql.gz" />
+	<property name="cat" value="category.sql.gz" />
+	<property name="catlinks" value="categorylinks.sql.gz" />
+	<property name="article" value="pages-articles.xml.bz2" />	
+	
+	<property name="dbpedia-cat" value="http://downloads.dbpedia.org/${dbpedia}/${lang}/article_categories_${lang}.ttl.bz2" />
+		
+	<target name="clean">
+		<delete>
+			<fileset dir="${targetdir}" excludes="build.xml,wikidumps.xml"/>
+		</delete>
+	</target>
+	
+	
+	<target name ="get-source" >
+		<fail unless="lang"/>
+		<fail unless="dd"/>
+		<fail unless="targetdir"/>
+		<fail unless="dbpedia"/>
+
+		<echo message="Target: ${targetdir}"/>
+		<echo message="Dump date: ${dd}"/>
+		<echo message="Lang: ${lang}"/>
+		<echo message="DBPedia version: ${dbpedia}"/>
+		
+		<antcall target="clean"></antcall>
+		<mkdir dir="${targetdir}"/>
+		<touch file="${targetdir}/${dd}.dump" />
+		
+		
+		<antcall target="get-md5" />
+		<!--
+		<antcall target="get-ns0-titles" />
+		-->	
+		<antcall target="get-page" />
+		<antcall target="get-redirect" />
+		<antcall target="get-pagelinks" /> 
+		<antcall target="get-cat" />
+		<antcall target="get-catlinks" />
+		<!--
+		<antcall target="get-abstract" />
+		-->
+		<antcall target="get-article" />
+		<antcall target="get-dbpedia-cat" />
+	</target>
+	
+	
+	<target name="get-md5">
+		<get src="${baseurl}${prefix}${md5}" dest="${targetdir}/${pre-target}${md5}"/>
+	</target>
+	<target name="get-ns0-titles">
+		<antcall target="get.gz.del"><param name="file" value="${ns0-titles}"/></antcall>
+	</target>
+	<target name="get-page">
+		<antcall target="get.gz.del"><param name="file" value="${page}"/></antcall>
+	</target>
+       	<target name="get-redirect">
+		<antcall target="get.gz.del"><param name="file" value="${redirect}"/></antcall>
+	</target>
+
+	<target name="get-pagelinks">
+		<antcall target="get.gz.del"><param name="file" value="${pagelinks}"/></antcall>
+	</target>
+	<target name="get-cat">
+		<antcall target="get.gz.del"><param name="file" value="${cat}"/></antcall>
+	</target>
+	<target name="get-catlinks">
+		<antcall target="get.gz.del"><param name="file" value="${catlinks}"/></antcall>
+	</target>
+	<target name="get-abstract">
+		<get src="${baseurl}${prefix}${abstract}" dest="${targetdir}/${pre-target}${abstract}"/>
+	</target>
+	<target name="get-article">
+		<get src="${baseurl}${prefix}${article}" dest="${targetdir}/${pre-target}${article}" />
+		<bunzip2 src="${targetdir}/${pre-target}${article}"/>
+		<delete file="${targetdir}/${pre-target}${article}"/>
+	</target>
+	
+	<target name="get-dbpedia-cat">
+		<get src="${dbpedia-cat}" dest="${targetdir}/${lang}article_categories.ttl.bz2" />
+		<bunzip2 src="${targetdir}/${lang}article_categories.ttl.bz2"/>
+		<delete file="${targetdir}/${lang}article_categories.ttl.bz2"/>
+	</target>
+	
+	<target name="get.gz.del">
+		
+		<get src="${baseurl}${prefix}${file}" dest="${targetdir}/${pre-target}${file}" />
+		<gunzip src="${targetdir}/${pre-target}${file}"/>
+		<delete file="${targetdir}/${pre-target}${file}"/>
+	</target>
+
+
+</project>
