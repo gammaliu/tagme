@@ -252,7 +252,7 @@ TAGME repository has the following structure:
         ...
       wikipatterns.properties
 
-The wikipatterns.properties file is the one that is provided within this package
+The `wikipatterns.properties` file is the one that is provided within this package
 and must be copied in the base directory of the repository.
 
 An Ant task can be used to download all required datasets from Wikipedia and
