@@ -1,4 +1,4 @@
-TAGME V2.0 - HOW TO
+TAGME V1.1 - HOW TO
 ===================
 
 COPYRIGHT
@@ -28,11 +28,12 @@ AUTHORS' NOTE
 
 Even if the live demo of TAGME that is available at
 https://services.d4science.org/web/tagme/documentation
-has been queried more than 100 millions of times and has been able to handle
-thousands of queries per minute without any issue (hence proving a certain
-stability), this code has still to be considered an academic prototype: it is 
-the result of several refinement iterations and multiple researchers have put
-their hands on the code with a "trial and error" approach.
+has been queried more than 400 millions of times since its introduction in
+2011, and has been able to handle thousands of queries per minute without any
+issue (hence proving a certain stability), this code has still to be considered
+an academic prototype: it is the result of several refinement iterations and
+multiple researchers have put their hands on the code with a "trial and error"
+approach.
   
 For this reason, it is not meant be used in production environments or 
 critical applications. As stated in the license, the software is distributed 
@@ -42,8 +43,12 @@ If you are using this software for your researches and you are going to publish
 results based on TAGME annotation process, please add this citation to your 
 paper:
 
-> Paolo Ferragina, Ugo Scaiella: Fast and Accurate Annotation of Short Texts 
-> with Wikipedia Pages. IEEE Software 29(1): 70-75 (2012)
+> [Paolo Ferragina](http://pages.di.unipi.it/ferragina/), Ugo Scaiella:
+> [Fast and Accurate Annotation of Short Texts with Wikipedia Pages](http://ieeexplore.ieee.org/document/6035657/).
+> IEEE Software 29(1): 70-75 (2012)
+
+For more information on TagMe and some of its applications, please visit:
+http://acube.di.unipi.it/tagme/
 
 REQUIREMENTS
 ============
@@ -305,7 +310,10 @@ each task run.
 Disclaimer by Aurélien Géron
 ============================
 
-I am not the original author of this project. I contacted Paolo Ferragina, who provided me with this code under the Apache 2.0 License, and kindly authorized me to publish it on GitHub. I made a few minor modifications before the first commit:
+I am not the original author of this project. I contacted
+[Paolo Ferragina](http://pages.di.unipi.it/ferragina/), who provided me with
+this code under the Apache 2.0 License, and kindly authorized me to publish it
+on GitHub. I made a few minor modifications before the first commit:
 
 * Renamed `LICENSE.txt` to `LICENSE`, and `README.txt` to `README.md`, and updated `build.xml` accordingly.
 * Made purely cosmetic changes to this `README.md` file and added this final section.
