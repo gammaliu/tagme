@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
 	***************************************** 
-	*			T A G M E V2
+	*			T A G M E V1.1
 	*		sample configuration
 	***************************************** 
 -->
 <tagme>
-	<logConfiguration>...</logConfiguration>
-	<stopword>...</stopword>
-	<repository>...</repository>
+	<logConfiguration>/your/project/path/log4j.xml</logConfiguration>
+	<stopword>/your/project/path/stopwords/</stopword>
+	<repository>/your/project/path/repository/</repository>
 
 	<langs>
 		<lang>it</lang>
@@ -22,7 +22,6 @@
 		<param name="instantPruning" value="true" />
 		<param name="window" value="8" />
 		<param name="data" value="TERNARY_TRIE" />
-		-->
 	</setting>
 
 	<setting name="annotation">

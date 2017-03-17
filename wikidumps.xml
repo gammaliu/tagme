@@ -11,8 +11,8 @@
 	
 	<property name="prefix" value="${lang}wiki-${dd}-" />
 	<property name="pre-target" value="${lang}wiki-latest-" />
-	<property name="baseurl" value="http://dumps.wikimedia.org/${lang}wiki/${dd}/" />
-	
+	<property name="baseurl" value="https://dumps.wikimedia.org/${lang}wiki/${dd}/" />
+
 	<property name="md5" value="md5sums.txt" />
 	<property name="ns0-titles" value="all-titles-in-ns0.gz" />
 	<property name="abstract" value="abstract.xml" />
