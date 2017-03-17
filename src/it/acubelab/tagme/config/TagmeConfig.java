@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,7 +39,7 @@ public class TagmeConfig {
 
 	static Logger log = Logger.getLogger(TagmeConfig.class);
 
-	public static final String 
+	public static final String
 	ITALIAN = "it",
 	ENGLISH = "en";
 
@@ -49,7 +49,7 @@ public class TagmeConfig {
 
 	public static Config get()
 	{
-		if (conf == null) 
+		if (conf == null)
 			throw new ConfigurationException("You must call the init method for configuring TAGME!");
 		return conf;
 	}
@@ -92,7 +92,7 @@ public class TagmeConfig {
 	{
 		if (conf == null)
 		{
-			synchronized(TagmeConfig.class) 
+			synchronized(TagmeConfig.class)
 			{
 				if (conf == null)
 				{
@@ -181,7 +181,7 @@ public class TagmeConfig {
 	 * 	In the XML context configuration you have to set this environment variable:<br/>
 	 * 	<pre>
 	 	&lt;Context ...>
-  			&lt;Environment name="configFilePath" value="....." 
+  			&lt;Environment name="configFilePath" value="....."
   				type="java.lang.String" override="false"/>
 		&lt;/Context></pre>
 		In the web.xml of the application you have to insert the refs to that variable<br/>

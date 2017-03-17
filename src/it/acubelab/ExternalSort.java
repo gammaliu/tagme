@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,8 +45,8 @@ import java.util.Set;
 import java.util.TreeMap;
 
 /**
- * A multi-way external merge sort that use a TreeMap (Java Red-Black Tree) as 
- * internal sorting data structure. This implementation is 100% pure Java and 
+ * A multi-way external merge sort that use a TreeMap (Java Red-Black Tree) as
+ * internal sorting data structure. This implementation is 100% pure Java and
  * is able to scale over GBs of data better than the unix <code>sort</code> command.
  * <br><br>
  * This class has a main method so that it can be used via command line in a easy way.
@@ -55,10 +55,10 @@ import java.util.TreeMap;
  * By default this class reads from stdin and write in stdout. This behavior can
  * be changed using the {@link #setInFile(String)} and the {@link #setOutFile(String)}
  * method.
- * 
+ *
  * @author Claudio Corsi
  * @author Paolo Ferragina
- * 
+ *
  */
 public class ExternalSort {
 	
@@ -100,15 +100,15 @@ public class ExternalSort {
 	private TreeMap<String, Tuple> map;
 	
 	
-	/** 
+	/**
 	 * Create a new ExternalSort.
-	 * 
+	 *
 	 */
 	public ExternalSort() {}
 	
 	/**
 	 * A reverse comparator.
-	 * 
+	 *
 	 * @author data
 	 *
 	 */
@@ -120,7 +120,7 @@ public class ExternalSort {
 	
 	/**
 	 * Used to store all the Strings associated to a sorting key with their run's ids.
-	 * 
+	 *
 	 * @author Claudio Corsi
 	 *
 	 */
@@ -152,7 +152,7 @@ public class ExternalSort {
 	
 	/**
 	 * Used to compare two strings by their sorting columns (aka sorted keys).
-	 * 
+	 *
 	 * @author Claudio Corsi
 	 *
 	 */
@@ -177,7 +177,7 @@ public class ExternalSort {
 			this.reverse = reverse;
 		}
 		
-		public int length() { 
+		public int length() {
 			
 			return (key != row) ? 80+ key.length() *2 + row.length()*2 : 40+row.length()*2;
 			
@@ -189,8 +189,8 @@ public class ExternalSort {
 	}
 	
 	/**
-	 * Set true to have log messages on stdout during the sorting process. 
-	 * 
+	 * Set true to have log messages on stdout during the sorting process.
+	 *
 	 * @param verbose
 	 */
 	public void setVerbose(boolean verbose) {
@@ -201,7 +201,7 @@ public class ExternalSort {
 
 	/**
 	 * Set true to sort in reverse order (ascendent instead of descendent).
-	 * 
+	 *
 	 * @param reverse
 	 */
 	public void setReverse(boolean reverse) {
@@ -211,8 +211,8 @@ public class ExternalSort {
 	
 	/**
 	 * Compare the sorting values (rows or columns) as numerical values. In other
-	 * words this flag will cause the right padding of the sorting values. 
-	 * 
+	 * words this flag will cause the right padding of the sorting values.
+	 *
 	 * @param numeric
 	 */
 	public void setNumeric(boolean numeric) {
@@ -222,8 +222,8 @@ public class ExternalSort {
 	
 	/**
 	 * Instead to sort, dump the frequencies of the
-	 * sorting keys in their sorted order (not in the frequency values order). 
-	 * 
+	 * sorting keys in their sorted order (not in the frequency values order).
+	 *
 	 * @param dist
 	 */
 	public void setKeysDistribution(boolean dist) {
@@ -233,8 +233,8 @@ public class ExternalSort {
 	
 	/**
 	 * Remove duplicates from the result. In case of equals sorting values (rows or columns) only
-	 * one of these is kept. 
-	 * 
+	 * one of these is kept.
+	 *
 	 * @param uniq
 	 */
 	public void setUniq(boolean uniq) {
@@ -243,10 +243,10 @@ public class ExternalSort {
 	}
 	
 	/**
-	 * Set the size of the chunk (run) of text to sort in memory at the first stage of 
+	 * Set the size of the chunk (run) of text to sort in memory at the first stage of
 	 * the algorithm. This is the maximum size of memory available to sort. If
 	 * not set the default value is 50MB.
-	 * 
+	 *
 	 * @param runSize the size of memory available expressed in bytes
 	 */
 	public void setRunSize(long runSize) {
@@ -255,9 +255,9 @@ public class ExternalSort {
 
 	/**
 	 * Set the page size to use in the second stage of the algorithm (pagination of the sorted runs).
-	 * This value should be chosen depending on the disk page size. The default value is 
+	 * This value should be chosen depending on the disk page size. The default value is
 	 * 100KB.
-	 * 
+	 *
 	 * @param pageSize the page size expressed in bytes.
 	 */
 	public void setPageSize(int pageSize) {
@@ -269,12 +269,12 @@ public class ExternalSort {
 	 * of the rows (divided by new lines). If specified each row will be divided into columns and sorted
 	 * accordingly to the value of the specified rows. The order of the columns matter. For example
 	 * if the columns list is [1, 0, 5] then for first the column 1 of each row is compared. In case
-	 * of the same value the column 0 is compared and, at the end, the column 5. 
+	 * of the same value the column 0 is compared and, at the end, the column 5.
 	 * Two rows are considered equals if all the specified columns contain the same value
-	 * 
+	 *
 	 * @see #setUniq(boolean)
-	 * @see #setSeparator(char) 
-	 * 
+	 * @see #setSeparator(char)
+	 *
 	 * @param columns the list of columns to sort
 	 */
 	public void setColumns(int[] columns) {
@@ -289,7 +289,7 @@ public class ExternalSort {
 
 	/**
 	 * Set the character to use to split the rows in columns. Default value is tab ('\t').
-	 *   
+	 *
 	 * @param sep
 	 */
 	public void setSeparator(char sep) {
@@ -302,8 +302,8 @@ public class ExternalSort {
 	 * If true, dump out only the sorting column(s) omitting the other ones.
 	 * The dumped column(s) will be sorted respecting the sorting parameters.
 	 * If no columns are selected (sort by the entire rows) this option
-	 * doesn't have effect. 
-	 * 
+	 * doesn't have effect.
+	 *
 	 * @param extract true to dump out only the sorting column(s)
 	 */
 	public void setExtract(boolean extract) {
@@ -321,7 +321,7 @@ public class ExternalSort {
 	
 	/**
 	 * Set the output file. By default the result is written in stdout.
-	 * 
+	 *
 	 * @param outfile
 	 * @throws FileNotFoundException
 	 */
@@ -332,8 +332,8 @@ public class ExternalSort {
 	}
 	
 	/**
-	 * Set the input file to sort. By default is the stdin.  
-	 * 
+	 * Set the input file to sort. By default is the stdin.
+	 *
 	 * @param infile
 	 * @throws FileNotFoundException
 	 */
@@ -351,7 +351,7 @@ public class ExternalSort {
 	
 	/**
 	 * Start the sorting process. This method can take much time to complete.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	public void run() throws IOException {
@@ -382,7 +382,7 @@ public class ExternalSort {
 			long currChunkSize = 0;
 			
 			while(currChunkSize <= runSize) {
-//					long keysSize = 0; 
+//					long keysSize = 0;
 				
 				if (fbr.readLine(buff) == null) {
 					EOF = true;
@@ -399,7 +399,7 @@ public class ExternalSort {
 				//currChunkSize += buff.length();  // count the number of CHARS
 				currChunkSize += s.length(); //i don't now why, but now it's ok with 4
 				
-			} 
+			}
 			
 			chunkCounter++;
 			
@@ -518,7 +518,7 @@ public class ExternalSort {
 				tuple.lines = oldTuple.lines;
 			}
 			
-			if (!uniq || (tuple.lines.size() == 0 && !key.equals(currKey))) 
+			if (!uniq || (tuple.lines.size() == 0 && !key.equals(currKey)))
 				tuple.append(line);
 			
 			if (currPageSize >= pageSize) {
@@ -533,7 +533,7 @@ public class ExternalSort {
 		
 		if (outfile != null) out = new PrintStream(outfile);
 		
-		// FIXME: synchronized Writer! Use a not synch one to speed up the I/O 
+		// FIXME: synchronized Writer! Use a not synch one to speed up the I/O
 		FastBufferedWriter bw = new FastBufferedWriter(out, 16384); // 16KB buffer size
 		
 		long start = System.currentTimeMillis();
@@ -582,7 +582,7 @@ public class ExternalSort {
 						numberOfDumpedRows++;
 					}
 					
-					if (verbose && (numberOfDumpedRows % 1000000) == 0 && numberOfDumpedRows != 0) 
+					if (verbose && (numberOfDumpedRows % 1000000) == 0 && numberOfDumpedRows != 0)
 						updateProgressInfos(start);
 				}
 				
@@ -620,10 +620,10 @@ public class ExternalSort {
 	}
 	
 	public static long getOptimalRunSize(){
-		return 
-			(Runtime.getRuntime().maxMemory() - 
-			 Runtime.getRuntime().totalMemory() + 
-			 Runtime.getRuntime().freeMemory()) / 2; 
+		return
+			(Runtime.getRuntime().maxMemory() -
+			 Runtime.getRuntime().totalMemory() +
+			 Runtime.getRuntime().freeMemory()) / 2;
 	}
 	
 

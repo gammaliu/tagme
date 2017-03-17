@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,7 +33,7 @@ import java.util.List;
 public final class AnchorTrie implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	private static final int 
+	private static final int
 		INIT_CAPACITY = 8,
 		GROW_FACTOR = 2;
 	public static final String ENCODING = "US-ASCII";
@@ -203,7 +203,7 @@ public final class AnchorTrie implements Serializable
 		}
 
 		@Override
-		public int search(TokenizedCharSequence input) 
+		public int search(TokenizedCharSequence input)
 		{
 			Node current = trie.head;
 			int found = 0, token = 0;

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,7 +17,7 @@ package it.acubelab.tagme;
 
 import it.unimi.dsi.fastutil.longs.Long2FloatOpenHashMap;
 
-public class CachedRelatednessMeasure extends RelatednessMeasure 
+public class CachedRelatednessMeasure extends RelatednessMeasure
 {
 	
 	public static final int DEFAULT_CACHE_INITIAL_SIZE = 8000000; //8M
@@ -45,7 +45,7 @@ public class CachedRelatednessMeasure extends RelatednessMeasure
 	}
 
 	@Override
-	public float rel(int a, int b) 
+	public float rel(int a, int b)
 	{
 		long key=key(a,b);
 		if(cache.containsKey(key)) {

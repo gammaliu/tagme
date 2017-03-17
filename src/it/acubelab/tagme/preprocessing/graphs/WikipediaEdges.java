@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,7 +49,7 @@ public class WikipediaEdges extends TextDataset {
 	}
 
 	@Override
-	protected void parseFile(File file) throws IOException 
+	protected void parseFile(File file) throws IOException
 	{
 
 		final Int2IntMap redirects = DatasetLoader.get(new RedirectMap(lang));
@@ -68,7 +68,7 @@ public class WikipediaEdges extends TextDataset {
 		final BufferedWriter out = new BufferedWriter(new FileWriter(tmp));
 		SQLWikiParser parser = new 	SQLWikiParser(log) {
 			@Override
-			public boolean compute(ArrayList<String> values) throws IOException 
+			public boolean compute(ArrayList<String> values) throws IOException
 			{
 				int idFrom = Integer.parseInt(values.get(SQLWikiParser.PAGELINKS_ID_FROM));
 				if (redirects.containsKey(idFrom)) idFrom = redirects.get(idFrom);
@@ -76,11 +76,11 @@ public class WikipediaEdges extends TextDataset {
 				int ns = Integer.parseInt(values.get(SQLWikiParser.PAGELINKS_NS));
 
 				
-				if (ns == SQLWikiParser.NS_ARTICLE && !redirects.containsKey(idFrom) && !ignores.contains(idFrom) && 
-						//questo e' necessario perchè alcune pagine che sono delle liste, in inglese finiscono 
+				if (ns == SQLWikiParser.NS_ARTICLE && !redirects.containsKey(idFrom) && !ignores.contains(idFrom) &&
+						//questo e' necessario perchè alcune pagine che sono delle liste, in inglese finiscono
 						//tra le pagine di disambiguazione (per via della categoria All_set_index_articles)
 						(listpages.contains(idFrom) || !disambiguations.contains(idFrom))
-						//!listpages.contains(idFrom) && !disambiguations.contains(idFrom) 
+						//!listpages.contains(idFrom) && !disambiguations.contains(idFrom)
 						&& valids.contains(idFrom)
 				
 				/**/ )

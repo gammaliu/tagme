@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,7 +23,7 @@ import it.acubelab.tagme.RelatednessMeasure;
 import it.acubelab.tagme.preprocessing.TopicSearcher;
 
 /**
- * Similarity calculator between list of annotations. The calculator exploits the tags found by tagMe and 
+ * Similarity calculator between list of annotations. The calculator exploits the tags found by tagMe and
  * uses the information contained in the graph structure to find the semantic relatedness between texts.
  */
 public class Similarity {
@@ -85,7 +85,7 @@ public class Similarity {
 	public float sim(List<Annotation> annotsA, List<Annotation> annotsB, RelatednessMeasure rel, float rhoNA)
 	{
 		float pairSim = 0;
-		float normFactor = 0; 
+		float normFactor = 0;
 		for(List<Annotation> list : new List[]{annotsA, annotsB})
 		{
 			List<Annotation> others = list == annotsA ? annotsB : annotsA;

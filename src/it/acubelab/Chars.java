@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,7 +37,7 @@ public class Chars {
 			char n = c.charAt(i);
 			int nn=0;
 			switch(n){
-			case '0': nn=0; break; 
+			case '0': nn=0; break;
 			case '1': nn=1; break;
 			case '2': nn=2; break;
 			case '3': nn=3; break;
@@ -112,7 +112,7 @@ public class Chars {
 		{
 			if (last<pos)
 				tokens.add(input.subSequence(last, pos));
-			else 
+			else
 				tokens.add(new MutableString(""));
 			last = pos+1;
 		}

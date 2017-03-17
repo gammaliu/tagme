@@ -54,7 +54,7 @@
 		-->	
 		<antcall target="get-page" />
 		<antcall target="get-redirect" />
-		<antcall target="get-pagelinks" /> 
+		<antcall target="get-pagelinks" />
 		<antcall target="get-cat" />
 		<antcall target="get-catlinks" />
 		<!--

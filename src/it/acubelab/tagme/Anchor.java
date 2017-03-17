@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,7 +51,7 @@ public class Anchor implements Serializable, IntIterable {
 
 	/**
 	 * Drop (anchor-&gt;page) that occur less than this threshold.
-	 * See {@link AnchorIndexer}. 
+	 * See {@link AnchorIndexer}.
 	 */
 	public static final int MIN_LINKS = 2;
 
@@ -196,7 +196,7 @@ public class Anchor implements Serializable, IntIterable {
 	}
 
 	/**
-	 * A class for iterating Anchors frequently: you can re-use this class by setting the underlying Anchor obejct 
+	 * A class for iterating Anchors frequently: you can re-use this class by setting the underlying Anchor obejct
 	 * with {@link #setAnchor(Anchor)} and then iterating with the same object.
 	 * {@link Anchor.pages()} creates a new instance at each iteration
 	 */
@@ -217,12 +217,12 @@ public class Anchor implements Serializable, IntIterable {
 		}
 		public int page(){
 			//			if (instance==null || idx > (instance.q==null? 1 : instance.q.length)) throw new IllegalStateException();
-			//			else 
+			//			else
 			return instance.q==null? instance.p : instance.q[idx];
 		}
 		public float commonness(){
 			//			if (instance==null || idx > (instance.q==null? 1 : instance.q.length)) throw new IllegalStateException();
-			//			else 
+			//			else
 			return instance.q==null? 1f : instance.c[idx];
 		}
 		public int index(){
@@ -231,7 +231,7 @@ public class Anchor implements Serializable, IntIterable {
 	}
 
 	/**
-	 * @descr Create a new Anchor 
+	 * @descr Create a new Anchor
 	 * @param int id - a unique identifier for the anchor
 	 * @param Int2IntMap links
 	 * @param int frequency
@@ -287,7 +287,7 @@ public class Anchor implements Serializable, IntIterable {
 
 		if (links.size() == 0) return null;
 		//if we have removed some pages, we have to set the un-ambiguous page
-		else if (links.size() == 1) 
+		else if (links.size() == 1)
 		{
 			a.p = links.keySet().iterator().nextInt();
 		}

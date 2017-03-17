@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -54,9 +54,9 @@ public abstract class Indexer {
 			for(String l : TagmeConfig.get().getLangs())
 				langs.add(l);
 		} else {
-			if (!TagmeConfig.get().getLangs().contains(args[1])) 
+			if (!TagmeConfig.get().getLangs().contains(args[1]))
 				printUsage();
-			else 
+			else
 				langs.add(args[1]);
 		}
 		
@@ -118,7 +118,7 @@ public abstract class Indexer {
 			if (logMail!=null) logMail.fatal("ERROR during processing!", t);
 			System.exit(1);
 		}
-		if (logMail != null) 
+		if (logMail != null)
 		{
 			logMail.info("Process executed!");
 			logMail.info("LANG = "+args[1]);
@@ -130,8 +130,8 @@ public abstract class Indexer {
 	static final String SEARCH_BASEPATH = "it.acubelab.tagme.";
 	static final String[] SEARCH_PACKAGES = {
 		"",
-		"preprocessing.", 
-		"preprocessing.support.", 
+		"preprocessing.",
+		"preprocessing.support.",
 		"preprocessing.anchors.",
 		"preprocessing.graphs."
 	};
@@ -149,8 +149,8 @@ public abstract class Indexer {
 					return (Indexer)clazz.newInstance();
 				}
 				
-			} 
-			catch (ClassNotFoundException cnfe){} 
+			}
+			catch (ClassNotFoundException cnfe){}
 			catch (InstantiationException e) {}
 			catch (IllegalAccessException e) {}
 		}
@@ -240,9 +240,9 @@ public abstract class Indexer {
 
 	
 	/**
-	 * 
+	 *
 	 *       INSTANCE
-	 * 
+	 *
 	 */
 	///////////////////////////////////////////////////////////////////////////
 	protected void closeIndex(IndexWriter index) throws IOException
@@ -268,7 +268,7 @@ public abstract class Indexer {
 
 	
 	/**
-	 * 
+	 *
 	 * CONTAINER FOR Dataset<?> TO BE PROCESSED
 	 *
 	 */
@@ -303,7 +303,7 @@ public abstract class Indexer {
 	}
 	
 	/**
-	 * 
+	 *
 	 * CONTAINER FOR TextDataset TO BE PROCESSED
 	 *
 	 */

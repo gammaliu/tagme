@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-	***************************************** 
+<!--
+	*****************************************
 	*			T A G M E V1.1
 	*		sample configuration
-	***************************************** 
+	*****************************************
 -->
 <tagme>
 	<logConfiguration>/your/project/path/log4j.xml</logConfiguration>

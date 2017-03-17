@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,7 +39,7 @@ public class AnnotatedText {
 	int text_len;
 	/**
 	 * The offset of the cleaned char wrt the cleaned text.
-	 * Means that text[i] was originally at the position offset[i] in the original text 
+	 * Means that text[i] was originally at the position offset[i] in the original text
 	 */
 	int[] offsets;
 	/**
@@ -82,7 +82,7 @@ public class AnnotatedText {
 	public static final int WIN_END = 1;
 	/**
 	 * Disambiguation windows for all anchors in the text
-	 * For each annotation at idx i of annotations, 
+	 * For each annotation at idx i of annotations,
 	 * windows[i] contains the start and the end of the surrounding window for the annotation
 	 * The window is expressed in terms of indexes of other annotation in the list
 	 * The array has a dimension of [N][2], where N is the size of annotations list.
@@ -90,7 +90,7 @@ public class AnnotatedText {
 	int[][] windows;
 	/**
 	 * Information about pruning (substring pruning algorithm) for a certain window
-	 * It could be that an anchor A could be pruned if you consider it in a certain window for anchor B 
+	 * It could be that an anchor A could be pruned if you consider it in a certain window for anchor B
 	 * (eg. because window for anchor B contains an anchor C that is super-string of A)
 	 * But if you consider A in another window that doesn't contain C, A has not to be pruned.
 	 * So windowPruning[B][A] specifies whether the anchor A in the window for anchor B has to be ignored for disambiguation
@@ -113,7 +113,7 @@ public class AnnotatedText {
 	}
 	
 	/**Creates an annotated text object reading data from a reader.
-	 * @param reader where to read the data from. 
+	 * @param reader where to read the data from.
 	 * @param length the maximum length of the text to read.
 	 * @throws IOException if an error occurred while reading from the reader.
 	 */
@@ -145,8 +145,8 @@ public class AnnotatedText {
 	}
 	
 	public int getOriginalTextEnd(Annotation s){
-		/* 
-		 * We need to find the position of the last character of the clean text in the original text 
+		/*
+		 * We need to find the position of the last character of the clean text in the original text
 		 * and then add 1. (interval end is exclusive). The behavior below is no longer needed
  		 */
 		return /*removedLeadingChars+*/offsets[s.end-1]+1;
@@ -161,7 +161,7 @@ public class AnnotatedText {
 	
 	public String getOriginalText(Annotation a){
 		/*
-		 * qui non dobbiamo sommare removedLeadingChars, 
+		 * qui non dobbiamo sommare removedLeadingChars,
 		 * perchè il nostro original è già shiftato
 		 */
 		return original.subSequence(offsets[a.start], offsets[a.end-1]+1).toString();
@@ -248,7 +248,7 @@ public class AnnotatedText {
 			return annotations.get(cursor);
 		}
 		public boolean currentIsPruned(){
-			return isLong? 
+			return isLong?
 					windowPruning != null && windowPruning[annot][cursor] :
 					(annotations.get(cursor).ignored || annotations.get(cursor).pruned);
 		}

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,7 +35,7 @@ public class CategoriesToWIDMap extends Dataset<Object2IntMap<String>> {
 	}
 
 	@Override
-	protected Object2IntMap<String> parseSet() throws IOException 
+	protected Object2IntMap<String> parseSet() throws IOException
 	{
 		final Object2IntOpenHashMap<String> map = new Object2IntOpenHashMap<String>(3000000);
 		File input = WikipediaFiles.TITLES.getSourceFile(lang);

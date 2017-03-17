@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,15 +57,15 @@ import org.apache.log4j.Logger;
 //import sun.text.normalizer.NormalizerBase;
 //import sun.text.normalizer.NormalizerImpl;
 
-public class WikipediaAnchorParser extends TextDataset 
+public class WikipediaAnchorParser extends TextDataset
 {
 
 	static Logger log = Logger.getLogger(WikipediaAnchorParser.class);
-	public static final int 
+	public static final int
 	BOOST_TITLE = Anchor.MIN_LINKS,
 	MIN_ANCHOR_LEN = 2;
 
-	public static final Pattern 
+	public static final Pattern
 	P_FINAL_BRACKETS = Pattern.compile(" \\([^\\)]+\\)$"),
 	P_NUMBER_OR_SPACES = Pattern.compile("^[\\d\\s]*$"),
 	P_NON_ASCII = Pattern.compile("[^\\p{ASCII}]+");
@@ -88,7 +88,7 @@ public class WikipediaAnchorParser extends TextDataset
 
 
 	@Override
-	protected void parseFile(File file) throws IOException 
+	protected void parseFile(File file) throws IOException
 	{
 
 		log.info("Loading support datasets...");
@@ -122,7 +122,7 @@ public class WikipediaAnchorParser extends TextDataset
 				plog.start("Now parsing anchors...");
 			}
 			@Override
-			public void processArticle(WikiArticle a) throws IOException 
+			public void processArticle(WikiArticle a) throws IOException
 			{
 				plog.update(pages);
 				if (WIDs.contains(a.id()))
@@ -140,8 +140,8 @@ public class WikipediaAnchorParser extends TextDataset
 						
 						int target = a.id();
 						if (redirects.containsKey(target)) target = redirects.get(target);
-						if (!disambiguations.contains(target) && 
-								!listpages.contains(target) && 
+						if (!disambiguations.contains(target) &&
+								!listpages.contains(target) &&
 								!peoples.contains(target)
 								)
 						{
@@ -151,10 +151,10 @@ public class WikipediaAnchorParser extends TextDataset
 							for(int i=0;i<anchors.length;i++)
 								append(anchors[i], titleNoBrackets, target, BOOST_TITLE);
 
-						} else if (!redirects.containsKey(a.id())) { 
+						} else if (!redirects.containsKey(a.id())) {
 
 							//Insert name and only surname if he is a person
-							if (peoples.contains(a.id())) 
+							if (peoples.contains(a.id()))
 							{
 
 								CharSequence[] names = parseNames(a.title());
@@ -162,7 +162,7 @@ public class WikipediaAnchorParser extends TextDataset
 									append(names[i], titleNoBrackets, a.id(), BOOST_TITLE);
 
 								//Insert all disambiguations links
-								//Necessario perchè in inglese c'e' la categoria All_set_index_Articles che include disambiguazioni e liste 
+								//Necessario perchè in inglese c'e' la categoria All_set_index_Articles che include disambiguazioni e liste
 							} else if (disambiguations.contains(a.id()) && !listpages.contains(a.id())) {
 
 								CharSequence[] anchors = parseAnchor(a.title(), anchorStart);
@@ -176,8 +176,8 @@ public class WikipediaAnchorParser extends TextDataset
 										int idTarget = titles.getInt(l.page);
 										if (redirects.containsKey(idTarget)) idTarget = redirects.get(idTarget);
 
-										if (idTarget < 0 || 
-												disambiguations.contains(idTarget) || 
+										if (idTarget < 0 ||
+												disambiguations.contains(idTarget) ||
 												listpages.contains(idTarget) ||
 												ignores.contains(idTarget)) continue;
 
@@ -200,8 +200,8 @@ public class WikipediaAnchorParser extends TextDataset
 
 						if (redirects.containsKey(idTarget)) idTarget = redirects.get(idTarget);
 
-						if (idTarget < 0 || 
-								disambiguations.contains(idTarget) || 
+						if (idTarget < 0 ||
+								disambiguations.contains(idTarget) ||
 								listpages.contains(idTarget) ||
 								ignores.contains(idTarget)) continue;
 
@@ -285,7 +285,7 @@ public class WikipediaAnchorParser extends TextDataset
 	 * 3. delete a pattern at the beginning of the text, see anchorStart
 	 * 4. delete all dots '.'
 	 * 5. replace all punctuations with whitespaces, except for {@link WikipediaAnchorParser#SPECIAL_PUNCTS}
-	 * 6. if the original contained any of {@link WikipediaAnchorParser#SPECIAL_PUNCTS}, 
+	 * 6. if the original contained any of {@link WikipediaAnchorParser#SPECIAL_PUNCTS},
 	 * 	  it returns 2 anchors (with those puncts replaced by whitespace, and with those puncts deleted)
 	 *    otherwise, the normalization at 5.
 	 * If the normalization process doesn't produce a valid anchor, an empty array is returned
@@ -408,9 +408,9 @@ public class WikipediaAnchorParser extends TextDataset
 
 	/**
 	 * Remove all punctuations for an anchor, i.e. remove all but letters, digits and whitespaces
-	 * 
+	 *
 	 * @param input
-	 * @param ignoreChars A set of character (no digits, no letters) that are ignored when removing 
+	 * @param ignoreChars A set of character (no digits, no letters) that are ignored when removing
 	 * @param ignoreSequences if true, it does not remove sequences of the same characters i.e. '!!!'
 	 * @return A new MutableString
 	 */
@@ -424,8 +424,8 @@ public class WikipediaAnchorParser extends TextDataset
 		while(i<len)
 		{
 			while(i<len && (
-					Character.isLetter(array[i]) || 
-					Character.isDigit(array[i]) || 
+					Character.isLetter(array[i]) ||
+					Character.isDigit(array[i]) ||
 					(ignoreChars!=null && ignoreChars.indexOf(array[i])>=0) ||
 					(ignoreSequences && !Character.isWhitespace(array[i]) && (i>0 && array[i-1]==array[i] || i<len-1 && array[i+1]==array[i]) )
 					))
@@ -437,8 +437,8 @@ public class WikipediaAnchorParser extends TextDataset
 			}
 
 			while(i<len && !(
-					Character.isLetter(array[i]) || 
-					Character.isDigit(array[i]) || 
+					Character.isLetter(array[i]) ||
+					Character.isDigit(array[i]) ||
 					(ignoreChars!=null && ignoreChars.indexOf(array[i])>=0) ||
 					(ignoreSequences && !Character.isWhitespace(array[i]) && (i>0 && array[i-1]==array[i] || i<len-1 && array[i+1]==array[i]) )
 					)){
@@ -476,7 +476,7 @@ public class WikipediaAnchorParser extends TextDataset
 			isLastDot = false;
 			while(i<len && (array[i]=='.' || Character.isWhitespace(array[i])))
 			{
-				if (Character.isWhitespace(array[i]) || 
+				if (Character.isWhitespace(array[i]) ||
 						(i<len-2 && array[i+2]!='.' && !Character.isWhitespace(array[i+2])) ||
 						(i==len-2 && i>1 && array[i-2]!='.' && !Character.isWhitespace(array[i-2]))
 						)

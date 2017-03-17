@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,18 +28,18 @@ public class PLogger {
 	public static enum Step {
 		SECOND,
 		TEN_SECONDS,
-		MINUTE, 
+		MINUTE,
 		TEN_MINUTES,
 		HALF_OUR;
 	}
 	
-	public static long ONE_HOUR = 60*60*1000; 
+	public static long ONE_HOUR = 60*60*1000;
 	
 	
 	class LogTasker extends TimerTask
 	{
 		@Override
-		public void run() 
+		public void run()
 		{
 			log(false);
 		}
@@ -93,7 +93,7 @@ public class PLogger {
 			buf.append(".");
 			logMsg = buf.toString();
 		} else {
-			counts = new AtomicLongArray(1); 
+			counts = new AtomicLongArray(1);
 			logMsg = "Job: %,d items.";
 		}
 		this.logEnd = " %.1f%% ET: %02dh:%02dm";
@@ -207,7 +207,7 @@ public class PLogger {
 		stop = System.currentTimeMillis();
 		scheduler.cancel();
 		log(true);
-		log.log(level, "Job terminated in "+String.format(Locale.US, " %TT", (stop-start-ONE_HOUR))); 
+		log.log(level, "Job terminated in "+String.format(Locale.US, " %TT", (stop-start-ONE_HOUR)));
 	}
 
 	

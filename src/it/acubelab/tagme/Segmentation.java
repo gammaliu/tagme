@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -98,7 +98,7 @@ public final class Segmentation {
 			//Calcolo le finestre per ogni singola anchor
 			for (int i=0; i<N; i++)
 			{
-				Annotation i_spot = input.annotations.get(i); 
+				Annotation i_spot = input.annotations.get(i);
 				if (i_spot.ignored || i_spot.pruned) {
 					//Se l'ancora è stata rimossa o ignorata in fase di parsing non ha finestra e settiamo START e END a -1
 					input.windows[i][AnnotatedText.WIN_START] = -1;
@@ -287,7 +287,7 @@ public final class Segmentation {
 		Annotation b_spot = input.annotations.get(b);
 
 		//se B è ignorato o pruned, allora A e' sicuramente superiore
-		if (b_spot.pruned || b_spot.ignored) 
+		if (b_spot.pruned || b_spot.ignored)
 			return true;
 
 		//se A e B hanno la stessa anchor vuol dire che hanno lo stesso spot
@@ -303,8 +303,8 @@ public final class Segmentation {
 			}
 			else return false; //viceversa
 
-		} 
-		else 
+		}
+		else
 		{
 			if (substringPruning)
 			{
@@ -316,9 +316,9 @@ public final class Segmentation {
 				if (a_len == b_len) return false;
 				
 				//A è più corto di B, ma potrebbe avere una LP molto maggiore di B
-				else if (a_len < b_len) 
+				else if (a_len < b_len)
 				{
-					//Se A è contenuto nella stessa porzione di B allora controllo 
+					//Se A è contenuto nella stessa porzione di B allora controllo
 					//che non abbia una LP molto maggiore di B per evitare casi in cui
 					//ho due spot 'abc' e 'a' con lp(abc)=0,0001 e lp(a)=10
 					//'abc' può essere tranquillamente eliminato per evitare che faccia rumore

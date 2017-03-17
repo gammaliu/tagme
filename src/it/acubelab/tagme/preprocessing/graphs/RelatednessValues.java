@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,7 +48,7 @@ public class RelatednessValues extends TextDataset {
 	}
 
 	@Override
-	protected void parseFile(File mapFile) throws IOException 
+	protected void parseFile(File mapFile) throws IOException
 	{
 
 		log.info("Loading datasets...");
@@ -129,9 +129,9 @@ public class RelatednessValues extends TextDataset {
 			for(int j=0;j<candidates.size;j++)
 			{
 				int node2=candidates.get(j);
-				if(intersections[node2]>=RelatednessMeasure.MIN_INTERSECTION && 
-						!ignores.contains(node2) && 
-						!listpages.contains(node2)) 
+				if(intersections[node2]>=RelatednessMeasure.MIN_INTERSECTION &&
+						!ignores.contains(node2) &&
+						!listpages.contains(node2))
 				{
 					int node2_size=in_graph.outdegree(node2);
 
@@ -139,7 +139,7 @@ public class RelatednessValues extends TextDataset {
 					
 					float rel =	
 					(float) (
-					(Math.log(Math.max(node_size,node2_size)) - Math.log(intersections[node2])) 
+					(Math.log(Math.max(node_size,node2_size)) - Math.log(intersections[node2]))
 					/
 					(logW - Math.log(Math.min(node_size, node2_size))));
 
@@ -163,7 +163,7 @@ public class RelatednessValues extends TextDataset {
 			plog.update(0);
 			candidates.removeAll();
 		}
-		 
+		
 
 
 		//		for(int node=graph.numNodes()-1;node>=0;node--){
@@ -178,7 +178,7 @@ public class RelatednessValues extends TextDataset {
 		//				intersections[n0]++;
 		//				candidates.add(n0);
 		//			}
-		//			 
+		//			
 		//
 		//			int n2=-1;
 		//			while( (n2=in_star.nextInt())>=0){
@@ -205,8 +205,8 @@ public class RelatednessValues extends TextDataset {
 		//				if(intersections[node2]>=2){
 		//					float node2_size=in_graph.outdegree(node2);
 		//					float rel = (float)
-		//					((Math.log(Math.max(node_size,node2_size)) - Math.log(intersections[node2])) 
-		//							/ 
+		//					((Math.log(Math.max(node_size,node2_size)) - Math.log(intersections[node2]))
+		//							/
 		//					(logW - Math.log(Math.min(node_size, node2_size))));
 		//					
 		//					rel = rel > THRESHOLD ? 0 : (THRESHOLD-rel)/THRESHOLD;

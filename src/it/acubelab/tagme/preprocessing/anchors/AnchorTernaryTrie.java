@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -89,7 +89,7 @@ public final class AnchorTernaryTrie implements Serializable{
 	public AnchorTernaryTrie(){
 	}
 
-	public boolean add(String anchor, Anchor obj) throws UnsupportedEncodingException 
+	public boolean add(String anchor, Anchor obj) throws UnsupportedEncodingException
 	{
 		byte[] string = anchor.getBytes(ENCODING);
 		if (head == null) head = new Node(string[0]);
@@ -115,7 +115,7 @@ public final class AnchorTernaryTrie implements Serializable{
 				current = string[i] < current.split  ? current.lo : current.hi;
 
 			if (current == null) return null;
-			else if (i < string.length-1) current = current.eq; 
+			else if (i < string.length-1) current = current.eq;
 		}
 
 		return current.obj;
@@ -148,7 +148,7 @@ public final class AnchorTernaryTrie implements Serializable{
 		}
 
 		@Override
-		public int search(TokenizedCharSequence input) 
+		public int search(TokenizedCharSequence input)
 		{
 			Node current = trie.head;
 			int found = 0, token = 0;

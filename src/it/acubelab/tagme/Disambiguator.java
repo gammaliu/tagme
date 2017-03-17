@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,7 +28,7 @@ public final class Disambiguator {
 
 	static Logger log = Logger.getLogger(Disambiguator.class);
 	
-	private static final float LOWEST_EPSILON = 0.000001f; 
+	private static final float LOWEST_EPSILON = 0.000001f;
 
 	public float getEpsilon() {
 		return epsilon;
@@ -194,7 +194,7 @@ public final class Disambiguator {
 					float commonness = pageIterator.commonness();
 					int links = (int) (commonness * anchor.links());
 
-					if ( (minCommonness>0 && commonness < minCommonness) || 
+					if ( (minCommonness>0 && commonness < minCommonness) ||
 							(minLinks>0 && links < minLinks) ||
 							( checkNames && !likesPeople && links <= Anchor.MIN_LINKS && people!=null && people.contains(p)) )
 					{
@@ -234,7 +234,7 @@ public final class Disambiguator {
 			 * VOTES from other anchors
 			 * must be done only if there is more than one possible sense.
 			 */
-			if (realAmbiguity > 1) 
+			if (realAmbiguity > 1)
 			{		
 				//String page_t=input.getOriginalText(a);
 				
@@ -261,7 +261,7 @@ public final class Disambiguator {
 							float bpage_comm = innerPageIterator.commonness();
 							int bpage_links = (int) (bpage_comm * anchor.links());
 
-							if ( (minCommonness>0 && bpage_comm < minCommonness) || 
+							if ( (minCommonness>0 && bpage_comm < minCommonness) ||
 									(minLinks>0 && bpage_links < minLinks) ||
 									( checkNames && !likesPeople && bpage_links <= Anchor.MIN_LINKS && people!=null && people.contains(bpage)) )
 								continue;
@@ -297,15 +297,15 @@ public final class Disambiguator {
 				if (realAmbiguity == 1)
 				{
 					//see above the reason of this check
-					if(checkNames && !likesPeople && notAmbiguousAnchorLinks <= Anchor.MIN_LINKS && people!=null && people.contains(notAmbiguousAnchorSense)) 
-						a.topic=Annotation.NOT_DISAMBIGUATED; 
-					else 
+					if(checkNames && !likesPeople && notAmbiguousAnchorLinks <= Anchor.MIN_LINKS && people!=null && people.contains(notAmbiguousAnchorSense))
+						a.topic=Annotation.NOT_DISAMBIGUATED;
+					else
 						a.topic = notAmbiguousAnchorSense;
-				} 
+				}
 				//if there are no votes and there is ambiguity, there are no means to decide which sense is right.
 				//else a.topic = Annotation.NOT_DISAMBIGUATED;
 				//New Version
-				else 
+				else
 				{
 					a.topic=a.anchor.mostCommonPage();
 				}
@@ -314,7 +314,7 @@ public final class Disambiguator {
 			}
 
 			//If there is more than one vote, choose the candidate with the TOP-epsilon
-			else 
+			else
 			{
 				/**
 				 * ROBUSTNESS TEST
@@ -323,7 +323,7 @@ public final class Disambiguator {
 				//If the robustness test must be done, the epsilon must be changed to the lowest.
 				//If the maximum commonness is higher than the robustness limit, the normal epsilon can be used.
 				//Otherwise, a dummy epsilon equal to 0 can be used.
-				float robust_epsilon = robustnessTest && maxAncComm < robustnessLimit ? LOWEST_EPSILON : epsilon; 
+				float robust_epsilon = robustnessTest && maxAncComm < robustnessLimit ? LOWEST_EPSILON : epsilon;
 
 				float maxComm = 0;
 				pageIterator.setAnchor(anchor);

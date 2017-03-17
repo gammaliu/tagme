@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,16 +38,16 @@ public class WikiTextExtractor {
 		MIN_ABSTRACT_CHARS = 100,
 		MAX_ABSTRACT_CHARS = 300;
 	
-	static final String[] GARBAGE_TAGS = 
+	static final String[] GARBAGE_TAGS =
 		{"ref", "gallery", "timeline", "noinclude", "pre", "table", "source",
 		"tr", "td", "ul", "li", "ol", "dl", "dt", "dd", "menu", "dir"};
 	
-	static final String[] WRAPPER_TAGS = 
+	static final String[] WRAPPER_TAGS =
 		{"nowiki", "cite", "hiero", "div", "font", "span", "strong",
         "strike", "blockquote", "tt", "var", "sup", "sub", "big", "small",
         "center", "h1", "h2", "h3", "em", "b", "i", "u", "a", "s", "p"};
 	
-	static final String[] SINGLE_TAGS = 
+	static final String[] SINGLE_TAGS =
 		{"references", "ref", "img", "br", "hr", "li", "dt", "dd"};
 	
 	static final String[] PLACEHOLDER_TAGS = {"code", "math"};
@@ -404,7 +404,7 @@ public class WikiTextExtractor {
 		return output;
 	}
 	
-	public MutableString removeStructure(MutableString input, boolean onlyAbstract) 
+	public MutableString removeStructure(MutableString input, boolean onlyAbstract)
 	{
 		
 		MutableString buffer = new MutableString(1024);

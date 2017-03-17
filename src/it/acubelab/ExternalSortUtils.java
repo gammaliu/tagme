@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 
 /**
  * Utility class with a variety of multi-purpose static methods.
- * 
+ *
  * @author Claudio Corsi
  * @author Paolo Ferragina
  *
@@ -50,7 +50,7 @@ public abstract class ExternalSortUtils {
 	private ExternalSortUtils() {}
 	
 	public static double round(double val, int precision) {
-		return (double)Math.round(val * precision) / precision; 
+		return (double)Math.round(val * precision) / precision;
 	}
 	
 	public static String formatSize(long size) {
@@ -92,7 +92,7 @@ public abstract class ExternalSortUtils {
                 (byte)(val >>> 16),
                 (byte)(val >>> 8),
                 (byte)val};
-	    
+	
 	}
 	
 	public static byte[] longToBytes(long val) {
@@ -101,7 +101,7 @@ public abstract class ExternalSortUtils {
 		bb.flip();
 	    byte[] byteData = new byte[8];
 	    bb.get(byteData);
-	    
+	
 	    return byteData;
 	}
 	
@@ -118,7 +118,7 @@ public abstract class ExternalSortUtils {
 		bb.clear();
 		bb.put(array);
 		bb.flip();
-	    
+	
 	    return bb.getLong();
 	}
 	
@@ -135,7 +135,7 @@ public abstract class ExternalSortUtils {
 	
 	/**
 	 * A fast way to load in memory the content of a file.
-	 * 
+	 *
 	 * @param file the file to load
 	 * @return the file content in bytes
 	 * @throws IOException
@@ -205,7 +205,7 @@ public abstract class ExternalSortUtils {
 				if (dim < 20) {	// padding for 20 chars (signed long)
 					int padding = 20 - dim;
 					int limit = n + padding;
-					for(; n < limit; n++) chars[n] = '0'; 
+					for(; n < limit; n++) chars[n] = '0';
 				}
 			}
 			

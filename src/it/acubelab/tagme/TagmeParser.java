@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2014 A3 lab (Dipartimento di Informatica, Università di Pisa)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,10 +30,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class TagmeParser 
+public class TagmeParser
 {
 
-	public static final int 
+	public static final int
 	MAX_ASCII = 127,
 	MAX_NORM_CHARS = 3;
 
@@ -209,7 +209,7 @@ public class TagmeParser
 
 
 			//Imposta la nuova finestra sull'array text
-			tokenizedWindow.setNewWindow(windowStart, windowEnd-windowStart); 
+			tokenizedWindow.setNewWindow(windowStart, windowEnd-windowStart);
 
 			//System.out.println(windowStart+":"+windowEnd);
 			//System.out.println(tokenizedWindow.subSequence(windowStart+1,windowEnd-windowStart));
@@ -285,7 +285,7 @@ public class TagmeParser
 						//k rimane nella posizione dell'ultima ricerca e lo stato di questo CharByCharSearcher e' rimasto invariato
 						//Se l'ultima ricerca e' finita male, il while si interrompe subito e anche il metodo end() ritorna falso
 						while(k<s.end && searchIgnoreAnchors.next(text[k++]));
-						//adesso ho terminato di scorrere il trie perche' 
+						//adesso ho terminato di scorrere il trie perche'
 						//	1. non ho trovato text[windowStart<->s.end] e quindi searcher.end() ritornera' false
 						//	2. ho trovato tutto text[windowStart<->s.end] e ora devo controllare che in quella posizione
 						//		nel trie ci sia una terminazione.
@@ -319,11 +319,11 @@ public class TagmeParser
 	 *	<li>per i dashes (i trattini): vengono rimossi e nessuno spazio viene inserito.</li></ul>
 	 * @param input Viene ripulito dai caratteri non ASCII
 	 * @param output Viene aggiornato con il testo ripulito.
-	 * @param offsets Viene aggiornato con la posizione del testo in quello original. 
+	 * @param offsets Viene aggiornato con la posizione del testo in quello original.
 	 * In pratica offsets[i] contiene la posizione nel testo originale del carattere i-esimo del testo pulito
-	 * @param breakingChars Viene aggiornato con indicatori dei breaking chars. 
+	 * @param breakingChars Viene aggiornato con indicatori dei breaking chars.
 	 * Le posizioni sono riferite al testo pulito, ovvero breakingChars[i]=true se il separatore di token che si trova nel testo pulito
-	 * alla posizione i-esima era un breaking char.  
+	 * alla posizione i-esima era un breaking char.
 	 * @return La lung	hezza del testo pulito (output).
 	 */
 	public static int clean(char[] input, char[] output, int[] offsets, boolean[] breakingChars)
@@ -361,7 +361,7 @@ public class TagmeParser
 			}
 
 			//APPENDO I CARATTERI BUONI
-			if (i>last) 
+			if (i>last)
 			{
 				if (addSpace && out_len > 0)  output[out_len++] = ' ';
 				if (i-last == 1) output[out_len++] = input[last];
@@ -446,7 +446,7 @@ public class TagmeParser
 
 	static boolean validChar(char[] input, int i)
 	{
-		return input[i] <= MAX_ASCII && ( Character.isLetter(input[i]) || Character.isDigit(input[i]) ); 
+		return input[i] <= MAX_ASCII && ( Character.isLetter(input[i]) || Character.isDigit(input[i]) );
 	}
 
 	/**
@@ -454,10 +454,10 @@ public class TagmeParser
 	 * WARNING: it possibly modifies the input array!
 	 * @param input The input chars, this could be modified!
 	 * @param output The cleaned text chars, its length must be greater or equal to input.length.
-	 * @param offsets The positions of cleaned chars in the original input 
+	 * @param offsets The positions of cleaned chars in the original input
 	 * (i.e. output[i] was in position offsets[i] of the input array).
 	 * Its length must be greater or equal to input.length
-	 * @return The length of the cleaned text that is lower than or equal to input.length. 
+	 * @return The length of the cleaned text that is lower than or equal to input.length.
 	 */
 	public static int clean(char[] input, char[] output, int[] offsets)
 	{
@@ -523,8 +523,8 @@ public class TagmeParser
 			if (o instanceof CharSequence){
 				CharSequence s = (CharSequence)o;
 				if (len != s.length()) return false;
-				for(int i=0; i<len; i++) 
-					if (array[i+offset]!=s.charAt(i)) 
+				for(int i=0; i<len; i++)
+					if (array[i+offset]!=s.charAt(i))
 						return false;
 				return true;
 			}

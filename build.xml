@@ -92,7 +92,7 @@
 	
 	<target name="run" depends="compile">
 		<fail unless="class" message="No [class] param specified: use -Dclass=" />
-		<java 
+		<java
 			fork="true"
 			classpathref="tagme.cp"
 			classname="it.acubelab.tagme.${class}">
@@ -111,7 +111,7 @@
 		    <format property="logdate" pattern="yyMMdd-HH.mm" locale="IT"/>
 		</tstamp>
 		<mkdir dir="${basedir}/logs" />
-		<java 
+		<java
 			fork="true"
 			classpathref="tagme.cp"
 			classname="it.acubelab.tagme.preprocessing.Indexer"
