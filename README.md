@@ -34,13 +34,13 @@ issue (hence proving a certain stability), this code has still to be considered
 an academic prototype: it is the result of several refinement iterations and
 multiple researchers have put their hands on the code with a "trial and error"
 approach.
-  
-For this reason, it is not meant be used in production environments or 
-critical applications. As stated in the license, the software is distributed 
+
+For this reason, it is not meant be used in production environments or
+critical applications. As stated in the license, the software is distributed
 as is, without warranties or conditions of any kind.
 
 If you are using this software for your researches and you are going to publish
-results based on TAGME annotation process, please add this citation to your 
+results based on TAGME annotation process, please add this citation to your
 paper:
 
 > [Paolo Ferragina](http://pages.di.unipi.it/ferragina/), Ugo Scaiella:
@@ -189,7 +189,7 @@ for further details.
 CODE SAMPLES
 ============
 
-A couple of code samples are provided within this package in the `samples` 
+A couple of code samples are provided within this package in the `samples`
 folder:
 
     ./
@@ -197,7 +197,7 @@ folder:
         Example1.java
         Example2.java
 
-Both classes contain a simple main method that can be used to understand 
+Both classes contain a simple main method that can be used to understand
 the main TAGME's objects, how to access data structures, how to annotate
 texts and get the results.
 
@@ -262,7 +262,7 @@ DBpedia:
 
 where:
 
-* `lang` can be `it` (Italian) or `en` (English)
+* `lang` can be `it` (Italian) or `en` (English).
 * `dd` is the version of the Wikipedia dump in the format YYYYMMDD (the date of
   the snapshot). See http://dumps.wikimedia.org/backup-index.html for further
   details.
@@ -270,9 +270,9 @@ where:
   http://downloads.dbpedia.org/ for additional details.
 * `targetdir` is the directory where files will be stored, ie `<repository
   root>/it/source` for Italian or `<repository root>/en/source` for English.
-  
+
 This task downloads and extracts Wikipedia and DBpedia data. Note that for
-English Wikipedia, this requires about 90G of disk space. Additionally, 
+English Wikipedia, this requires about 90G of disk space. Additionally,
 the process generates several datasets and to complete the indexing you should
 need for about 180 GB.
 
@@ -283,14 +283,14 @@ Wikipedia/DBpedia data.
 
 where:
 
-* `lang` can be `it` (Italian) or `en` (English)
+* `lang` can be `it` (Italian) or `en` (English).
 * `config.file` is the absolute path to the TAGME config file, where the
   repository path, log4j configuration file path and other parameters are
-  specified
+  specified.
 * `mem` is the amount of JVM heap space to allocate for the process (basically
-  you need for the same amount of memory that is required to run TAGME)
+  you need for the same amount of memory that is required to run TAGME), for example `-Dmem=24G`.
 * `mailto` (optional) the email address where a notification of the end of the
-  process will be sent. An SMTP server must be installed in the machine. 
+  process will be sent. An SMTP server must be installed in the machine.
 
 This task creates all data structures, also the ones used in fast mode, so the
 task itself requires a lot of memory (see above). If you need to generate data
@@ -301,9 +301,9 @@ just to run in 'light mode', you can execute this Ant task:
 Indexing may take several hours (about 40 hours for English wikipedia), so it
 is recommended running it with a tool like `screen` or `tmux`.
 
-If you are using the log4j configuration file attached to this package, the 
+If you are using the log4j configuration file attached to this package, the
 output of the process is redirect to the standard output, that Ant redirects
-to a file that will be create for each task run. You can find this file in 
+to a file that will be create for each task run. You can find this file in
 `./logs/` directory. Ant task takes care to generate a unique a file name for
 each task run.
 
