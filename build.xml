@@ -108,7 +108,7 @@
 		<fail unless="type" message="No [type] param specified: use -Dtype=(values, separated by a +)" />
 		
 		<tstamp>
-		    <format property="logdate" pattern="yyMMdd-HH.mm" locale="IT"/>
+		    <format property="logdate" pattern="yyMMdd-HH.mm" locale="en,US"/>
 		</tstamp>
 		<mkdir dir="${basedir}/logs" />
 		<java
