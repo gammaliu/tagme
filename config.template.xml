@@ -16,7 +16,6 @@
 		<lang>LANG_CODE</lang>
 	</langs>
 
-
 	<setting name="parsing">
 		<param name="useIgnoreAnchor" value="BOOLEAN_VALUE" />
 		<param name="removeAnchorStopword" value="BOOLEAN_VALUE" />
