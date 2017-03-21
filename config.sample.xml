@@ -11,10 +11,12 @@
 	<repository>/your/project/path/repository/</repository>
 
 	<langs>
-		<lang>it</lang>
+		<lang>de</lang>
 		<lang>en</lang>
+		<lang>es</lang>
+		<lang>fr</lang>
+		<lang>it</lang>
 	</langs>
-
 
 	<setting name="parsing">
 		<param name="useIgnoreAnchor" value="true" />
