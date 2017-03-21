@@ -175,8 +175,9 @@ This will read the configuration, set the logging (logging framework is Log4j)
 and load data structures.
 
 Main class for annotating texts is `it.acubelab.tagme.wrapper.Annotator`. The
-constructor accepts a String identifying a language code (can be `"it"` or `"en"`)
-and provides few methods to get annotations from a text. Namely the method
+constructor accepts a String identifying a language code (can be `"de"`,
+`"en"`, `"es"`, `"fr"` or `"it"`) and provides few methods to get annotations
+from a text. Namely the method
 
     List<Annotation> getAnnotationList(String to_annot)
 
@@ -244,10 +245,19 @@ http://downloads.dbpedia.org/
 TAGME repository has the following structure:
 
     <repository root>/
-      it/
+      de/
         source/
         ...
       en/
+        source/
+        ...
+      es/
+        source/
+        ...
+      fr/
+        source/
+        ...
+      it/
         source/
         ...
       wikipatterns.properties
@@ -262,14 +272,14 @@ DBpedia:
 
 where:
 
-* `lang` can be `it` (Italian) or `en` (English).
+* `lang` can be `de` (German), `en` (English), `es` (Spanish), `fr` (French) or `it` (Italian).
 * `dd` is the version of the Wikipedia dump in the format YYYYMMDD (the date of
   the snapshot). See http://dumps.wikimedia.org/backup-index.html for further
   details.
 * `dbpedia` is the version of DBpedia, in the format `X.Y`. See
   http://downloads.dbpedia.org/ for additional details.
 * `targetdir` is the directory where files will be stored, ie `<repository
-  root>/it/source` for Italian or `<repository root>/en/source` for English.
+  root>/de/source` for German, `<repository root>/en/source` for English, and so on.
 
 This task downloads and extracts Wikipedia and DBpedia data. Note that for
 English Wikipedia, this requires about 90G of disk space. Additionally,
@@ -283,7 +293,7 @@ Wikipedia/DBpedia data.
 
 where:
 
-* `lang` can be `it` (Italian) or `en` (English).
+* `lang` can be `de` (German), `en` (English), `es` (Spanish), `fr` (French) or `it` (Italian).
 * `config.file` is the absolute path to the TAGME config file, where the
   repository path, log4j configuration file path and other parameters are
   specified.
