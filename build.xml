@@ -17,7 +17,7 @@
 	
 	-->
 	<property name="all.indexes" value="WikipediaIndexer+AnchorIndexer+WikipediaGraph+WikipediaInGraph+InGraphArray+TopicIndexer+TopicDocs+AnchorTernaryTrieDump+RelatednessMatrix+PeopleWIDs"/>
-	<property name="light.indexes" value="WikipediaIndexer+AnchorIndexer+WikipediaGraph+WikipediaInGraph+InGraphArray+TopicIndexer+TopicDocs+TopicDocs+PeopleWIDs"/>
+	<property name="light.indexes" value="WikipediaIndexer+AnchorIndexer+WikipediaGraph+WikipediaInGraph+InGraphArray+TopicIndexer+TopicDocs+PeopleWIDs"/>
 	
 	<path id="tagme.lib">
 		<fileset dir="${lib}">
