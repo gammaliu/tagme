@@ -125,7 +125,7 @@ public class WikipediaEdges extends TextDataset {
 		    file.getAbsolutePath(),
 		    tmp.getAbsolutePath()
 		});
-		proc.waitFor();
+		try { proc.waitFor(); } catch (InterruptedException ex) {}
 
 		tmp.delete();
 

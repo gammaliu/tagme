@@ -101,7 +101,7 @@ public class BestAnchors extends Dataset<Int2ObjectMap<String>> {
 		    sortedAnchors.getAbsolutePath(),
 		    originalAnchors.getAbsolutePath()
 		});
-		proc.waitFor();
+		try { proc.waitFor(); } catch (InterruptedException ex) {}
 
 		log.info("Sorted.");
 

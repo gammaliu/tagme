@@ -91,7 +91,7 @@ public class WikipediaInGraph extends Indexer {
 		    tmp2.getAbsolutePath(),
 		    tmp1.getAbsolutePath()
 		});
-		proc.waitFor();
+		try { proc.waitFor(); } catch (InterruptedException ex) {}
 
 		log.info("Storing optmized graph...");
 		ProgressLogger logger;

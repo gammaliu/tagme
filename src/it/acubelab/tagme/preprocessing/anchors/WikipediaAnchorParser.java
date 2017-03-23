@@ -282,7 +282,7 @@ public class WikipediaAnchorParser extends TextDataset
 		    file.getAbsolutePath(),
 		    tmp.getAbsolutePath()
 		});
-		proc.waitFor();
+		try { proc.waitFor(); } catch (InterruptedException ex) {}
 
 		log.info("Sorted. Done.");
 
