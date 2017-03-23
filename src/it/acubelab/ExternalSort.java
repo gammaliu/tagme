@@ -457,7 +457,8 @@ public class ExternalSort {
 	}
 	
 	protected File createSortedRun(List<SortingKey> chunk) throws IOException {
-		
+		System.runFinalization(); System.gc();
+
 		//File tmp = File.createTempFile("run", ".txt");
 		File tmp=Dataset.createTmpFile();
 		tmp.deleteOnExit();
