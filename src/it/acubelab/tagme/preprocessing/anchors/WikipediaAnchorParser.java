@@ -268,12 +268,22 @@ public class WikipediaAnchorParser extends TextDataset
 		out.close();
 
 		log.info("Now sorting...");
-		ExternalSort sorter = new ExternalSort();
-		sorter.setColumns(new int[]{0,1,2});
-		//		sorter.setNumeric(true);
-		sorter.setInFile(tmp.getAbsolutePath());
-		sorter.setOutFile(file.getAbsolutePath());
-		sorter.run();
+		//ExternalSort sorter = new ExternalSort();
+		//sorter.setColumns(new int[]{0,1,2});
+		////		sorter.setNumeric(true);
+		//sorter.setInFile(tmp.getAbsolutePath());
+		//sorter.setOutFile(file.getAbsolutePath());
+		//sorter.run();
+
+		Runtime runtime = Runtime.getRuntime();
+		Process proc = runtime.exec(new String[] {
+		    "/usr/bin/sort",
+		    "-k1,1", "-k2,2", "-k3,3", "-o",
+		    file.getAbsolutePath(),
+		    tmp.getAbsolutePath()
+		});
+		proc.waitFor();
+
 		log.info("Sorted. Done.");
 
 	}

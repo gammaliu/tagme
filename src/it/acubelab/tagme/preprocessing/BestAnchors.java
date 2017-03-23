@@ -88,11 +88,20 @@ public class BestAnchors extends Dataset<Int2ObjectMap<String>> {
 		File originalAnchors = new WikipediaAnchorParser(lang).getFile();
 		File sortedAnchors = Dataset.createTmpFile();
 
-		ExternalSort sorter = new ExternalSort();
-		sorter.setInFile(originalAnchors.getAbsolutePath());
-		sorter.setOutFile(sortedAnchors.getAbsolutePath());
-		sorter.setColumns(new int[]{2,1});
-		sorter.run();
+		//ExternalSort sorter = new ExternalSort();
+		//sorter.setInFile(originalAnchors.getAbsolutePath());
+		//sorter.setOutFile(sortedAnchors.getAbsolutePath());
+		//sorter.setColumns(new int[]{2,1});
+		//sorter.run();
+
+		Runtime runtime = Runtime.getRuntime();
+		Process proc = runtime.exec(new String[] {
+		    "/usr/bin/sort",
+		    "-k2,2", "-k1,1", "-o",
+		    sortedAnchors.getAbsolutePath(),
+		    originalAnchors.getAbsolutePath()
+		});
+		proc.waitFor();
 
 		log.info("Sorted.");
 

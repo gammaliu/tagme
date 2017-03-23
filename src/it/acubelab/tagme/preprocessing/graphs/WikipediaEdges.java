@@ -110,13 +110,22 @@ public class WikipediaEdges extends TextDataset {
 
 		log.info("Now sorting edges...");
 
-		ExternalSort sorter = new ExternalSort();
-		sorter.setUniq(true);
-		sorter.setNumeric(true);
-		sorter.setColumns(new int[]{0,1});
-		sorter.setInFile(tmp.getAbsolutePath());
-		sorter.setOutFile(file.getAbsolutePath());
-		sorter.run();
+		//ExternalSort sorter = new ExternalSort();
+		//sorter.setUniq(true);
+		//sorter.setNumeric(true);
+		//sorter.setColumns(new int[]{0,1});
+		//sorter.setInFile(tmp.getAbsolutePath());
+		//sorter.setOutFile(file.getAbsolutePath());
+		//sorter.run();
+		
+		Runtime runtime = Runtime.getRuntime();
+		Process proc = runtime.exec(new String[] {
+		    "/usr/bin/sort",
+		    "-k1,1n", "-k2,2n", "-u", "-o",
+		    file.getAbsolutePath(),
+		    tmp.getAbsolutePath()
+		});
+		proc.waitFor();
 
 		tmp.delete();
 

@@ -78,12 +78,20 @@ public class WikipediaInGraph extends Indexer {
 		log.info("Sorting...");
 		File tmp2=Dataset.createTmpFile();
 
-		ExternalSort sorter = new ExternalSort();
-		sorter.setInFile(tmp1.getAbsolutePath());
-		sorter.setOutFile(tmp2.getAbsolutePath());
-		sorter.setNumeric(true);
-		sorter.setColumns(new int[]{0,1});
-		sorter.run();
+		//ExternalSort sorter = new ExternalSort();
+		//sorter.setInFile(tmp1.getAbsolutePath());
+		//sorter.setOutFile(tmp2.getAbsolutePath());
+		//sorter.setNumeric(true);
+		//sorter.setColumns(new int[]{0,1});
+		//sorter.run();
+		Runtime runtime = Runtime.getRuntime();
+		Process proc = runtime.exec(new String[] {
+		    "/usr/bin/sort",
+		    "-k1,1n", "-k2,2n", "-o",
+		    tmp2.getAbsolutePath(),
+		    tmp1.getAbsolutePath()
+		});
+		proc.waitFor();
 
 		log.info("Storing optmized graph...");
 		ProgressLogger logger;
