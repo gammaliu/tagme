@@ -40,8 +40,11 @@ public class TagmeConfig {
 	static Logger log = Logger.getLogger(TagmeConfig.class);
 
 	public static final String
-	ITALIAN = "it",
-	ENGLISH = "en";
+	GERMAN  = "de",
+	ENGLISH = "en",
+	SPANISH = "es",
+	FRENCH  = "fr",
+	ITALIAN = "it";
 
 	private static volatile Config conf = null;
 	private static String filepath = null;

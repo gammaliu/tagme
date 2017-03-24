@@ -67,14 +67,17 @@ public class BestAnchors extends Dataset<Int2ObjectMap<String>> {
 	void init() throws IOException{
 		anchorStart = WikiPatterns.getPattern(lang, Type.ANCHOR_START);
 		articles = Indexes.getSearcher(RepositoryDirs.WIKIPEDIA.getPath(lang));
-		if (lang.equals("it"))
-			stemmer = SnowballStemmerFactory.create(LANG.ITALIAN);
+		if (lang.equals("de"))
+			stemmer = SnowballStemmerFactory.create(LANG.GERMAN);
 		else if (lang.equals("en"))
 			stemmer = SnowballStemmerFactory.create(LANG.ENGLISH);
-		else if (lang.equals("de"))
-			stemmer = SnowballStemmerFactory.create(LANG.GERMAN);
+		else if (lang.equals("es"))
+			stemmer = SnowballStemmerFactory.create(LANG.SPANISH);
+		else if (lang.equals("fr"))
+			stemmer = SnowballStemmerFactory.create(LANG.FRENCH);
+		else if (lang.equals("it"))
+			stemmer = SnowballStemmerFactory.create(LANG.ITALIAN);
 		stopwords = WikiPatterns.getAnchorStopwords(lang);
-
 	}
 
 	@Override
