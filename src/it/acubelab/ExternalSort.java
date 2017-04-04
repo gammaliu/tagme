@@ -77,7 +77,6 @@ public class ExternalSort {
 	protected int[] columns = new int[0];
 	protected char sep = '\t';
 	protected long runSize = DEFAULT_RUN_SIZE;
-//		protected long runSize = getOptimalChunkSize();
 	protected int pageSize = DEFAULT_PAGE_SIZE;
 	protected long elapsedSecs = 0;
 	
@@ -179,7 +178,7 @@ public class ExternalSort {
 		
 		public int length() {
 			
-			return (key != row) ? 80+ key.length() *2 + row.length()*2 : 40+row.length()*2;
+			return (key != row) ? 80+key.length() *2 + row.length()*2 : 40+row.length()*2;
 			
 		}
 		
@@ -357,7 +356,6 @@ public class ExternalSort {
 	public void run() throws IOException {
 		
 		System.runFinalization(); System.gc();
-		runSize = getOptimalRunSize();
 		
 		if (verbose) System.out.println(" >> Input file: " + infile == null ? "<stdin>" : infile);
 		if (verbose) System.out.println(" >> Page size: " + ExternalSortUtils.formatSize(pageSize));
@@ -457,8 +455,6 @@ public class ExternalSort {
 	}
 	
 	protected File createSortedRun(List<SortingKey> chunk) throws IOException {
-		System.runFinalization(); System.gc();
-
 		//File tmp = File.createTempFile("run", ".txt");
 		File tmp=Dataset.createTmpFile();
 		tmp.deleteOnExit();
@@ -619,15 +615,5 @@ public class ExternalSort {
 			System.out.println(" >> Dumped rows: " + numberOfDumpedRows);
 		}
 	}
-	
-	public static long getOptimalRunSize(){
-		return
-			(Runtime.getRuntime().maxMemory() -
-			 Runtime.getRuntime().totalMemory() +
-			 Runtime.getRuntime().freeMemory()) / 2;
-	}
-	
-
-	
 }
 
